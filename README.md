@@ -9,7 +9,7 @@ ol3_magnifying_control
 openlayers3 verison 3.13.0
 
 #Installation
-    Include ol.js file.
+    Include ol.js,ol.css file.
     Include MagnifyingLense.js file.
 
 #Usage
