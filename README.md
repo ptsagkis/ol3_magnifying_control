@@ -12,8 +12,10 @@ openlayers3 verison 3.13.0
 
 #Usage
 **zero configuration**
+
         var magnCntrl = new ol.control.MagnifierControl({});
 **with options**
+
         var magnCntrl = new ol.control.MagnifierControl({
         scaleOffSet : 2,     //the diff between our map and magn map
         radius      : 100,   //the radius of magn lense
