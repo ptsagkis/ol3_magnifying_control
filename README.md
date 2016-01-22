@@ -12,7 +12,6 @@ openlayers3 verison 3.13.0
 
 #Usage
 
-@init
         var magnCntrl = new ol.control.MagnifierControl({});
         OR
         var magnCntrl = new ol.control.MagnifierControl({
@@ -23,7 +22,7 @@ openlayers3 verison 3.13.0
         });
 
 
-        @var roads = new ol.layer.Tile({
+        var roads = new ol.layer.Tile({
           source: new ol.source.OSM()
         });
         
