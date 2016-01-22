@@ -22,20 +22,15 @@ openlayers3 verison 3.13.0
 **with options**
 
         var magnCntrl = new ol.control.MagnifierControl({
-<<<<<<< HEAD
+
         scaleOffSet : 2,                   //@scaleOffSet {integer} (optional) default is 2. the diff between our map and magn map
         radius      : 100,                 //@radius {integer} default is 100. the circle radius of magn lense
         lineWidth   : 2,                   //@lineWidth {integer} default is 5. the width of lense outline
         strokeStyle : 'rgba(255,0,0,1)',   //@strokeStyle {stirng) default is 'rgba(255,0,0,1)'. red+green+blue+alpha chanel 
         layers      : [imagery]            //@layers {array} an array of ol.Layer. default is parent map existing layers
         });                                 
-=======
-        scaleOffSet : 2,    //@scaleOffSet {integer} (optional) default is 2. the diff between our map and magn map
-        radius      : 100,  //@radius {integer} default is 100. the circle radius of magn lense
-        lineWidth   : 2,    //@lineWidth {integer} default is 5. the width of lense outline
-        strokeStyle : 'rgba(255,0,0,1)'   //@strokeStyle {stirng) default is 'rgba(255,0,0,1)'. red+green+blue+alpha chanel 
-        });
->>>>>>> origin/master
+
+
 
 **and your usual ol3 code**
 
