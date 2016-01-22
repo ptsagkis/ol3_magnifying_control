@@ -6,7 +6,8 @@ ol3_magnifying_control
 - Inspired from [Layer Spy example!](http://openlayers.org/en/v3.13.0/examples/layer-spy.html)          
 
 - May be used as layer Spy Example
-to do so pass 
+
+To do so pass `scaleOffSet:0,layers:[the layer you want to spy to]`
 
 @Requirements
 openlayers3 verison 3.13.0
@@ -14,7 +15,9 @@ openlayers3 verison 3.13.0
 #Installation
     Include ol.js,ol.css file.
     Include MagnifyingLense.js file.
+#Demo
 
+fiddle demo  [here!](http://jsfiddle.net/p_tsagkis/kbLxct2L/)   
 #Usage
 **zero configuration**
 
