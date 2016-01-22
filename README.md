@@ -27,7 +27,7 @@ openlayers3 verison 3.13.0
 
 **and your usual ol3 code**
 
-        var roads = new ol.layer.Tile({
+        var osmroads = new ol.layer.Tile({
           source: new ol.source.OSM()
         });
         
@@ -39,7 +39,7 @@ openlayers3 verison 3.13.0
           }).extend([
             magnCntrl
           ]),
-          layers: [imagery],
+          layers: [osmroads],
           target: 'mymap',
           view: new ol.View({
             center: ol.proj.fromLonLat([-109, 46.5]),
