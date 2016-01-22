@@ -22,7 +22,7 @@ openlayers3 verison 3.13.0
         scaleOffSet : 2,    //@scaleOffSet {integer} (optional) default is 2. the diff between our map and magn map
         radius      : 100,  //@radius {integer} default is 100. the circle radius of magn lense
         lineWidth   : 2,    //@lineWidth {integer} default is 5. the width of lense outline
-        strokeStyle : 100   //@strokeStyle {stirng) default is 'rgba(255,0,0,1)'. red+green+blue+alpha chanel 
+        strokeStyle : 'rgba(255,0,0,1)'   //@strokeStyle {stirng) default is 'rgba(255,0,0,1)'. red+green+blue+alpha chanel 
         });
 
 **and your usual ol3 code**
