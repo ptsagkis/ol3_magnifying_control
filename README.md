@@ -13,32 +13,32 @@ openlayers3 verison 3.13.0
 #Usage
 
 @init
-var magnCntrl = new ol.control.MagnifierControl({});
-OR
-var magnCntrl = new ol.control.MagnifierControl({
-scaleOffSet : 2,     //the diff between our map and magn map
-radius      : 100,   //the radius of magn lense
-lineWidth   : 2,
-strokeStyle : 100
-});
+        var magnCntrl = new ol.control.MagnifierControl({});
+        OR
+        var magnCntrl = new ol.control.MagnifierControl({
+        scaleOffSet : 2,     //the diff between our map and magn map
+        radius      : 100,   //the radius of magn lense
+        lineWidth   : 2,
+        strokeStyle : 100
+        });
 
 
-var roads = new ol.layer.Tile({
-  source: new ol.source.OSM()
-});
-
-var map = new ol.Map({
- controls: ol.control.defaults({
-    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-      collapsible: false
-    })
-  }).extend([
-    magnCntrl
-  ]),
-  layers: [imagery],
-  target: 'mymap',
-  view: new ol.View({
-    center: ol.proj.fromLonLat([-109, 46.5]),
-    zoom: 2
-  })
-});
+        @var roads = new ol.layer.Tile({
+          source: new ol.source.OSM()
+        });
+        
+        var map = new ol.Map({
+         controls: ol.control.defaults({
+            attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+              collapsible: false
+            })
+          }).extend([
+            magnCntrl
+          ]),
+          layers: [imagery],
+          target: 'mymap',
+          view: new ol.View({
+            center: ol.proj.fromLonLat([-109, 46.5]),
+            zoom: 2
+          })
+        });
