@@ -13,7 +13,7 @@ To do so pass `scaleOffSet:0,layers:[the layer you want to spy to]`
 openlayers3 verison 3.13.0
 
 #Installation
-    Include ol.js,ol.css file.
+    Include ol.js,  ol.css files.
     Include MagnifyingLense.js file.
 #Demo
 
