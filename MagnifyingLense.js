@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @classdesc
  * Make map cursor act as a magnify lense
  *

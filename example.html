@@ -11,15 +11,11 @@
 
 <script type="text/javascript">
 function initMap(){
-var key = 'AuxBBMjAlE3BNG6BEaiNVni3ic3XH1uFPrS_ctXzHKohBObdCOBN_rP-n4hkAo9h';
 
 var roads = new ol.layer.Tile({
   source: new ol.source.OSM()
 });
 
-var imagery = new ol.layer.Tile({
-  source: new ol.source.BingMaps({key: key, imagerySet: 'Aerial'})
-});
 
 var magnCntrl = new ol.control.MagnifierControl({
 });
@@ -32,7 +28,7 @@ var map = new ol.Map({
   }).extend([
     magnCntrl
   ]),
-  layers: [imagery],
+  layers: [roads],
   target: 'map',
   view: new ol.View({
     center: ol.proj.fromLonLat([-109, 46.5]),
