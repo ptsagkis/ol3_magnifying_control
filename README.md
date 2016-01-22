@@ -22,7 +22,7 @@ openlayers3 verison 3.13.0
         lineWidth   : 2,
         strokeStyle : 100
         });
-
+**and your usual ol3 code**
 
         var roads = new ol.layer.Tile({
           source: new ol.source.OSM()
