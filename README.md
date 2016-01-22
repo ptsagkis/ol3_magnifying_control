@@ -1,0 +1,2 @@
+# ol3_magnifying_control
+ol3_magnifying_control
