@@ -45,6 +45,7 @@ this.toggleMagCntrl = function() {
    this_.magmap.unByKey(this_.precomposeListener);
    this_.magmap.unByKey(this_.postcomposeListener);
    this_.getMap().unByKey(this_.mousemoveListener);
+   //this_.getMap().unByKey(this_.moveendListener);
    document.getElementById(this_.targetMapDivId).removeEventListener("mouseout", this_.mouseOutFn);
    window.removeEventListener('resize', this_.resizeFn);
    this_.isVisble = false;
@@ -174,14 +175,28 @@ this.precomposeFn = function(event){
 this.postcomposeFn = function(event){
   var ctx = event.context;
   ctx.restore();
-};
+};  
+
+
 /**
 *
 */
 this.mouseMoveFn = function(event){
 var coords = event.coordinate;
 this_.mousePosition = event.pixel;
-this_.magmap.getView().setCenter(coords);
+var magcenter = this_.magmap.getView().getCenter();
+var mapcenter = this_.getMap().getView().getCenter();
+var xdif= magcenter[0] -  mapcenter[0];
+var ydif= magcenter[1] -  mapcenter[1];
+//seems to need some correction
+var coords1 = [coords[0]-(xdif/(this_.options.scaleOffSet+1)),coords[1]-(ydif/(this_.options.scaleOffSet+1))];
+if (this_.options.scaleOffSet===0){
+this_.magmap.getView().setCenter(this_.getMap().getView().getCenter());
+} else {
+this_.magmap.getView().setCenter(coords1);
+}
+//this_.magmap.getView().setCenter([coords[0]+xdif,coords[1]+ydif]);
+//console.log("setting zoomlevele",this_.getMap().getView().getZoom()+this_.options.scaleOffSet)
 this_.magmap.getView().setZoom(
   this_.getMap().getView().getZoom()+this_.options.scaleOffSet
 );
@@ -196,6 +211,7 @@ this.mouseOutFn = function(){
   this_.mousePosition = null;
   this_.magmap.render();
 };
+
 
 this.resizeFn();
 this.initialised = true;
