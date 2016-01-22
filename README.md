@@ -2,6 +2,7 @@
 ol3_magnifying_control
 
 Make map cursor act as a magnifying lense
+inspired from [this example!](http://openlayers.org/en/v3.13.0/examples/layer-spy.html)
 
 @Requirements
 openlayers3 verison 3.13.0
