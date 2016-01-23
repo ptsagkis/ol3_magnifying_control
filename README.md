@@ -18,6 +18,9 @@ openlayers3. Tested on version 3.13.0
 #Demo
 Download [zip](https://github.com/ptsagkis/ol3_magnifying_control/archive/master.zip)  
 and just double click on the example.html 
+
+OR
+
 fiddle demo  [here!](http://jsfiddle.net/p_tsagkis/kbLxct2L/)   
 #Usage
 **zero configuration**
