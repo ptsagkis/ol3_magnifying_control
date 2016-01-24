@@ -4,7 +4,7 @@
  *
  * @constructor
  * @extends {ol.control.Control}
- * @param {olx.control.RotateOptions=} opt_options Rotate options.
+ * @param {olx.control.Otpions=} opt_options MagnifierControl options.
  */
 ol.control.MagnifierControl = function(opt_options) {
 /**
