@@ -10,9 +10,9 @@ ol.control.MagnifierControl = function(opt_options) {
 /**
  * get and set config options
  * @scaleOffSet {integer} (optional) default is 2. 
- * @radius {integer} default is 100.
- * @lineWidth {integer} default is 5.
- * @strokeStyle {stirng) red+green+blue+alpha chanel 
+ * @radius {integer} (optional) default is 100.
+ * @lineWidth {integer} (optional) default is 5.
+ * @strokeStyle {stirng) (optional) red+green+blue+alpha chanel 
  */
 var options = opt_options || {};
 //console.log("this.getMap()",this.getMap())
