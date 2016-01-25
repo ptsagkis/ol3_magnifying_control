@@ -27,7 +27,7 @@ options.layers       = typeof(options.layers)      !== 'undefined' ? options.lay
 this.options = options;
 //vars with global scope
 this.initialised = false;
-this.magmap;
+this.magmap;//ol.map
 this.mousePosition = null;
 this.targetMapDivId;
 //control toggle button
@@ -112,10 +112,14 @@ ol.control.MagnifierControl.prototype.initMagCntrl = function(){
       zoom        : false,
       attribution : false
   });
-  //create the map for the magnify
+
   if (this.options.layers.length===0){
-  this.options.layers = this.getMap().getLayers();
+  //in this case (default) magnmap layers should stay in sunc with map layers. 
+  //great attitude of ol.Collection. in it?
+  //if not means have been passed as an array. So no sync. 
+  this.options.layers = this.getMap().getLayers();//returns ol.Collection
   }
+  //create the map for the magnify
   this.magmap = new ol.Map({
   layers        : this.options.layers,
   target        : 'magmap',
