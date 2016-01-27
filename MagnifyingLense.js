@@ -236,7 +236,9 @@ this.getMap().unByKey(this.mousemoveListener);
 document.getElementById(this.targetMapDivId).removeEventListener("mouseout", this.mouseOutFn);
 window.removeEventListener('resize', this.resizeFn);
 //remove the control
-this.getMap().removeControl(this)
+if (this.getMap()){
+this.getMap().removeControl(this);
+}
 //remove the element holding the magn map
 var element = document.getElementById(this.magmap.getTarget());
 element.parentNode.removeChild(element);
@@ -244,6 +246,8 @@ element.parentNode.removeChild(element);
 this.isVisble=false;
 this.initialised=false;
 } else {
-this.getMap().removeControl(this)
+if (this.getMap()){
+this.getMap().removeControl(this);
+}
 }
 };
