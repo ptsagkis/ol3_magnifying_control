@@ -17,11 +17,13 @@ openlayers3. Tested on version 3.13.0
     Include MagnifyingLense.js file.
 #Demo
 Download [zip](https://github.com/ptsagkis/ol3_magnifying_control/archive/master.zip)  
-and just double click on the example.html 
-
+and just double click on
+> example.html 
+> example2.html 
 OR
 
-fiddle demo  [here!](http://jsfiddle.net/p_tsagkis/kbLxct2L/)   
+fiddle demo (example.html)  [here!](http://jsfiddle.net/p_tsagkis/kbLxct2L/)  
+fiddle demo (example2.html) [here!](http://jsfiddle.net/p_tsagkis/54aosbsx/) 
 #Usage
 **zero configuration**
 
@@ -61,4 +63,7 @@ fiddle demo  [here!](http://jsfiddle.net/p_tsagkis/kbLxct2L/)
             center: ol.proj.fromLonLat([-109, 46.5]),
             zoom: 2
           })
-        });
+        });  
+ 
+ #api Methods
+ .destroy()     
