@@ -24,8 +24,11 @@ and/or
 
 OR
 
->fiddle demo (example.html)  [here!](http://jsfiddle.net/p_tsagkis/kbLxct2L/)  
+>fiddle demo (example.html)  [here!](http://jsfiddle.net/p_tsagkis/kbLxct2L/) 
+ 
 >fiddle demo (example2.html) [here!](http://jsfiddle.net/p_tsagkis/54aosbsx/) 
+
+
 #Usage
 **zero configuration**
 
