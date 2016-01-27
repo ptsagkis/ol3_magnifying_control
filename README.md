@@ -18,12 +18,14 @@ openlayers3. Tested on version 3.13.0
 #Demo
 Download [zip](https://github.com/ptsagkis/ol3_magnifying_control/archive/master.zip)  
 and just double click on
-> example.html 
-> example2.html 
+- example.html 
+and/or
+- example2.html 
+
 OR
 
-fiddle demo (example.html)  [here!](http://jsfiddle.net/p_tsagkis/kbLxct2L/)  
-fiddle demo (example2.html) [here!](http://jsfiddle.net/p_tsagkis/54aosbsx/) 
+>fiddle demo (example.html)  [here!](http://jsfiddle.net/p_tsagkis/kbLxct2L/)  
+>fiddle demo (example2.html) [here!](http://jsfiddle.net/p_tsagkis/54aosbsx/) 
 #Usage
 **zero configuration**
 
