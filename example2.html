@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OL3 - Magnifying Lense - Exmaple usage</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="http://openlayers.org/en/v3.13.0/css/ol.css" type="text/css" media="all" />
+
+<script src="http://openlayers.org/en/v3.13.0/build/ol-debug.js"></script>
+<script src="MagnifyingLense.js"></script>
+
+<script type="text/javascript">
+function initMap(){
+var key = 'AkGbxXx6tDWf1swIhPJyoAVp06H0s0gDTYslNWWHZ6RoPqMpB9ld5FY1WutX8UoF';
+
+var roads = new ol.layer.Tile({
+  source: new ol.source.OSM()
+});
+
+var imagery = new ol.layer.Tile({
+  source: new ol.source.BingMaps({key: key, imagerySet: 'Aerial'})
+});
+
+var magnCntrl = new ol.control.MagnifierControl({ 
+//scaleOffSet:2,
+//layers:[imagery]
+});
+
+var map = new ol.Map({
+ controls: ol.control.defaults({
+    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+      collapsible: false
+    })
+  }),
+  layers: [roads],
+  target: 'map',
+  view: new ol.View({
+    center: ol.proj.fromLonLat([-109, 46.5]),
+    zoom: 2
+  })
+});
+document.getElementById("remove").onclick = function(){
+magnCntrl.destroy();
+}
+
+
+document.getElementById("addit").onclick = function(){
+map.addControl(magnCntrl)
+}
+
+document.getElementById("setproperties").onclick = function(){
+console.log("props before",magnCntrl.getProperties());
+var newProps = { 
+  scaleOffSet:2,
+  layers:[imagery]
+  }
+magnCntrl.set('layers',[imagery]);
+console.log("props after",magnCntrl.getProperties());
+}
+
+}
+</script>
+
+</head>
+<body onload='initMap()'>
+<div id="map" style="width:100%;height:500px"></div> 
+<button id="addit">add magnifying</button>
+<button id="remove">remove magnifying</button>
+<button id="setproperties">setting properties</button>
+</body>
+</html>

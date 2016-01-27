@@ -222,3 +222,28 @@ this.resizeFn();
 this.initialised = true;
 }
 };
+
+/**
+ * destroy the control
+ * 
+ */
+ol.control.MagnifierControl.prototype.destroy = function(){
+if (this.initialised===true){
+//destory all the listeners
+this.magmap.unByKey(this.precomposeListener);
+this.magmap.unByKey(this.postcomposeListener);
+this.getMap().unByKey(this.mousemoveListener);
+document.getElementById(this.targetMapDivId).removeEventListener("mouseout", this.mouseOutFn);
+window.removeEventListener('resize', this.resizeFn);
+//remove the control
+this.getMap().removeControl(this)
+//remove the element holding the magn map
+var element = document.getElementById(this.magmap.getTarget());
+element.parentNode.removeChild(element);
+//set init vars to false and magnmap to null
+this.isVisble=false;
+this.initialised=false;
+} else {
+this.getMap().removeControl(this)
+}
+};
