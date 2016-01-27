@@ -65,5 +65,5 @@ fiddle demo (example2.html) [here!](http://jsfiddle.net/p_tsagkis/54aosbsx/)
           })
         });  
  
- #api Methods
- .destroy()     
+#api Methods
+> **destroy()**
