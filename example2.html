@@ -48,15 +48,7 @@ document.getElementById("addit").onclick = function(){
 map.addControl(magnCntrl)
 }
 
-document.getElementById("setproperties").onclick = function(){
-console.log("props before",magnCntrl.getProperties());
-var newProps = { 
-  scaleOffSet:2,
-  layers:[imagery]
-  }
-magnCntrl.set('layers',[imagery]);
-console.log("props after",magnCntrl.getProperties());
-}
+
 
 }
 </script>
@@ -66,6 +58,5 @@ console.log("props after",magnCntrl.getProperties());
 <div id="map" style="width:100%;height:500px"></div> 
 <button id="addit">add magnifying</button>
 <button id="remove">remove magnifying</button>
-<button id="setproperties">setting properties</button>
 </body>
 </html>
