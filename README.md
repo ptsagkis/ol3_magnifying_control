@@ -89,4 +89,4 @@ OR
 
 >changing the layers displayed on magnifying map
 
->pass and array of layers
+>pass an array of layers
