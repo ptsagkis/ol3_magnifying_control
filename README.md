@@ -19,9 +19,13 @@ openlayers3. Tested on version 3.13.0
 Download [zip](https://github.com/ptsagkis/ol3_magnifying_control/archive/master.zip)  
 and just double click on
 - example.html 
+
 and/or
+
 - example2.html 
+
 and/or
+
 - example3.html 
 
 OR
@@ -30,6 +34,8 @@ OR
  
 >fiddle demo (example2.html) [here!](http://jsfiddle.net/p_tsagkis/54aosbsx/) 
 
+>fiddle demo (example3.html) [here!](http://jsfiddle.net/p_tsagkis/r076nvc0/) 
+              
 
 #Usage
 **zero configuration**
