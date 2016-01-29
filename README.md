@@ -79,5 +79,7 @@ OR
 destroy the control and all listeners related to it. 
 
 > **setLayers([array of ol.layer])**
+
 changing the layers displayed on magnifying map
+
 pass and array of layers
