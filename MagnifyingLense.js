@@ -14,6 +14,8 @@ ol.control.MagnifierControl = function(opt_options) {
  * @lineWidth {integer} (optional) default is 5.
  * @strokeStyle {stirng) (optional) red+green+blue+alpha chanel
  * @layers {ol.layer[]} (optional) an Array of layers. Default is parent's map exisitng layers
+ * @synchMaps Whether the layers exist on map should be synched with magn map. 
+ *     - if layers supplied and this setted to true shall be setted to false       
  */
 var options = opt_options || {};
 //console.log("this.getMap()",this.getMap())
