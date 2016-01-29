@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>OL3 - Magnifying Lense - Exmaple2 usage</title>
+<title>OL3 - Magnifying Lense - Exmaple3 usage</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="http://openlayers.org/en/v3.13.0/css/ol.css" type="text/css" media="all" />
@@ -21,10 +21,21 @@ var imagery = new ol.layer.Tile({
   source: new ol.source.BingMaps({key: key, imagerySet: 'Aerial'})
 });
 
+
+var vector = new ol.layer.Vector({
+    source: new ol.source.Vector({
+        url: 'http://openlayers.org/en/v3.8.2/examples/data/geojson/countries.geojson',
+        format: new ol.format.GeoJSON(),
+        wrapX: false
+    })
+});
+
+
 var magnCntrl = new ol.control.MagnifierControl({ 
 //scaleOffSet:2,
-//layers:[imagery]
-});
+//layers:[roads],
+synchMaps:false
+});  
 
 var map = new ol.Map({
  controls: ol.control.defaults({
@@ -44,12 +55,17 @@ magnCntrl.destroy();
 }
 
 
-document.getElementById("addit").onclick = function(){ 
-
+document.getElementById("addit").onclick = function(){  
 map.addControl(magnCntrl)
 }
 
+document.getElementById("addLyr").onclick = function(){
+map.addLayer(vector);
+}
    
+document.getElementById("setLyrs").onclick = function(){
+magnCntrl.setLayers([imagery]);
+}
 
 }
 </script>
@@ -58,6 +74,8 @@ map.addControl(magnCntrl)
 <body onload='initMap()'>
 <div id="map" style="width:100%;height:500px"></div> 
 <button id="addit">add magnifying</button>
-<button id="remove">remove magnifying</button>    
+<button id="remove">remove magnifying</button>
+<button id="addLyr">add vec layer</button>
+<button id="setLyrs">setLayers(bing imagery)</button>
 </body>
 </html>

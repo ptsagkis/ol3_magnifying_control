@@ -22,6 +22,7 @@ options.radius       = typeof(options.radius)      !== 'undefined' ? options.rad
 options.lineWidth    = typeof(options.lineWidth)   !== 'undefined' ? options.lineWidth    : 5;
 options.strokeStyle  = typeof(options.strokeStyle) !== 'undefined' ? options.strokeStyle  : 'rgba(255,0,0,1)';
 options.layers       = typeof(options.layers)      !== 'undefined' ? options.layers       : [];
+options.synchMaps    = typeof(options.synchMaps)   !== 'undefined' ? options.synchMaps    : false;
 
 //attach options to the control
 this.options = options;
@@ -29,7 +30,8 @@ this.options = options;
 this.initialised = false;
 this.magmap;//ol.map
 this.mousePosition = null;
-this.targetMapDivId;
+this.targetMapDivId; 
+
 //control toggle button
 var button = document.createElement('button');
 button.innerHTML = 'M';
@@ -88,7 +90,7 @@ var element = document.createElement('div');
   ol.control.Control.call(this, {
     element : element,
     target  : options.target
-  });  
+  });    
 };
 ol.inherits(ol.control.MagnifierControl, ol.control.Control);
 /**
@@ -114,10 +116,16 @@ ol.control.MagnifierControl.prototype.initMagCntrl = function(){
   });
 
   if (this.options.layers.length===0){
-  //in this case (default) magnmap layers should stay in sunc with map layers. 
-  //great attitude of ol.Collection. in it?
-  //if not means have been passed as an array. So no sync. 
-  this.options.layers = this.getMap().getLayers();//returns ol.Collection
+    if (this.options.synchMaps === false){
+    this.options.layers = this.getMap().getLayers().getArray(); //get as array so remove any synch
+    } else { 
+    //in this case (default) magnmap layers should stay in sunc with map layers. 
+    //great attitude of ol.Collection. in it?
+    //if not means have been passed as an array. So no sync.
+    this.options.layers = this.getMap().getLayers();//returns ol.Collection     
+    }  
+  } else {
+  this.options.synchMaps = false; //set it false as not suppling layers means no synch may exist
   }
   //create the map for the magnify
   this.magmap = new ol.Map({
@@ -138,7 +146,15 @@ ol.control.MagnifierControl.prototype.initMagCntrl = function(){
     })
 });
 this.magmap.setSize(this.getMap().getSize());
-//listener functions here
+this.initListeners();
+this.resizeFn();
+this.initialised = true;
+}
+}; 
+/**
+ * setting the listeners related
+ */
+ol.control.MagnifierControl.prototype.initListeners = function(){
 var this_ = this;
 this.resizeFn = function(event){
   var magMapEl = document.getElementById('magmap');
@@ -194,14 +210,13 @@ var mapcenter = this_.getMap().getView().getCenter();
 var xdif= magcenter[0] -  mapcenter[0];
 var ydif= magcenter[1] -  mapcenter[1];
 //seems to need some correction
-var coords1 = [coords[0]-(xdif/(this_.options.scaleOffSet+1)),coords[1]-(ydif/(this_.options.scaleOffSet+1))];
+var coords1 = [coords[0]-(xdif/(this_.options.scaleOffSet+1)),coords[1]-(ydif/(this_.options.scaleOffSet+1))]; 
+console.log("this_.options.scaleOffSet+1-----",this_.options.scaleOffSet+1);
 if (this_.options.scaleOffSet===0){
 this_.magmap.getView().setCenter(this_.getMap().getView().getCenter());
 } else {
 this_.magmap.getView().setCenter(coords1);
 }
-//this_.magmap.getView().setCenter([coords[0]+xdif,coords[1]+ydif]);
-//console.log("setting zoomlevele",this_.getMap().getView().getZoom()+this_.options.scaleOffSet)
 this_.magmap.getView().setZoom(
   this_.getMap().getView().getZoom()+this_.options.scaleOffSet
 );
@@ -216,12 +231,7 @@ this.mouseOutFn = function(){
   this_.mousePosition = null;
   this_.magmap.render();
 };
-
-
-this.resizeFn();
-this.initialised = true;
 }
-};
 
 /**
  * destroy the control
@@ -243,11 +253,84 @@ this.getMap().removeControl(this);
 var element = document.getElementById(this.magmap.getTarget());
 element.parentNode.removeChild(element);
 //set init vars to false and magnmap to null
-this.isVisble=false;
-this.initialised=false;
+
 } else {
 if (this.getMap()){
 this.getMap().removeControl(this);
 }
 }
-};
+this.isVisble=false;
+this.initialised=false;
+};   
+
+/**
+ * very dirty way to reset the layers
+ * need to recreate the map itself. No matter the goodness of ol.collection
+ * sometimes is a pain in the a**
+ */
+ol.control.MagnifierControl.prototype.setLayers = function(lyrs) {
+if (this.initialised===true){
+  var existingLyrs = new ol.Collection(this.magmap.getLayers().getArray()).getArray();
+  this.options.synchMaps = false;
+  this.magmap.setTarget(null);
+  this.magmap = null; 
+  this.getMap().unByKey(this.mousemoveListener);
+  var magnControls = ol.control.defaults({
+      rotate      : true, //keep it true
+      zoom        : false,
+      attribution : false
+  });
+  this.magmap = new ol.Map({
+  layers        : lyrs,
+  target        : 'magmap',
+  controls      : magnControls,
+  interactions  :ol.interaction.defaults({
+      shiftDragZoom       : false,
+      dragPan             : false,
+      altShiftDragRotate  : false,
+      doubleClickZoom     : false,
+      mouseWheelZoom	    : false
+  }),
+  view:new ol.View({
+      center   : this.getMap().getView().getCenter(),
+      zoom     : this.getMap().getView().getZoom(),
+      rotation : this.getMap().getView().getRotation()
+    })
+});
+this.magmap.setSize(this.getMap().getSize());
+var this_ = this;
+console.log("this",this)
+    if (this_.isVisble===true ){
+    this.precomposeListener = this.magmap.on('precompose', 
+    	function(event) {
+    this_.precomposeFn(event);
+    });
+    this.postcomposeListener = this.magmap.on('postcompose', 
+    	function(event) {
+    this_.postcomposeFn(event);
+    });
+    this.mousemoveListener = this.getMap().on('pointermove', 
+    	function(event) {
+    this_.mouseMoveFn(event);
+    });
+    document.getElementById(this.targetMapDivId).addEventListener("mouseout", this_.mouseOutFn);
+    window.addEventListener ("resize", this_.resizeFn, false);
+    document.getElementById('magmap').style.display = 'block';
+    
+    } else {
+   //remove all the listeners 
+   this_.magmap.unByKey(this_.precomposeListener);
+   this_.magmap.unByKey(this_.postcomposeListener);
+   this_.getMap().unByKey(this_.mousemoveListener);
+   document.getElementById(this_.targetMapDivId).removeEventListener("mouseout", this_.mouseOutFn);
+   window.removeEventListener('resize', this_.resizeFn);
+   this_.isVisble = false;
+    }   
+   this.resizeFn();
+   this.initialised = true; 
+   this.options.synchMaps = false;     
+} else {
+//this.options.layers = lyrs;
+console.log("action when not initialised")
+}
+};  
