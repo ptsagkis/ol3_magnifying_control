@@ -82,10 +82,11 @@ OR
  
 #api Methods
 > **destroy()**
-destroy the control and all listeners related to it. 
+
+>destroy the control and all listeners related to it. 
 
 > **setLayers([array of ol.layer])**
 
-changing the layers displayed on magnifying map
+>changing the layers displayed on magnifying map
 
-pass and array of layers
+>pass and array of layers
