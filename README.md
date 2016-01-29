@@ -21,6 +21,8 @@ and just double click on
 - example.html 
 and/or
 - example2.html 
+and/or
+- example3.html 
 
 OR
 
@@ -42,6 +44,8 @@ OR
         lineWidth   : 2,                   //@lineWidth {integer} default is 5. the width of lense outline
         strokeStyle : 'rgba(255,0,0,1)',   //@strokeStyle {stirng) default is 'rgba(255,0,0,1)'. red+green+blue+alpha chanel 
         layers      : [imagery]            //@layers {array} an array of ol.Layer. default is parent map existing layers
+        synchMaps   : true                 //@synchMaps{boolean} Whether the layers exist on map should be synched with magn map. 
+                                           //if layers supplied and this setted to true shall be setted to false       
         });                                 
 
 
@@ -73,3 +77,7 @@ OR
 #api Methods
 > **destroy()**
 destroy the control and all listeners related to it. 
+
+> **setLayers([array of ol.layer])**
+changing the layers displayed on magnifying map
+pass and array of layers
